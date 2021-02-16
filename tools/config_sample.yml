@@ -1,0 +1,6 @@
+intra:
+  client: ""
+  secret: ""
+  uri: "https://api.intra.42.fr/oauth/token"
+  endpoint: "https://api.intra.42.fr/v2"
+  scopes: ""
