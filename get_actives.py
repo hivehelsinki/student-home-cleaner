@@ -39,16 +39,10 @@ def get_active_students():
     actives = get_students(endpoint, params)
     
     # Turn actives and inactives into set to remove duplicates
-    students = set(actives + inactives)
-
-    # Remove allowed users from the list
-    for user in allowed_list:
-        if user in students:
-            students.remove(user)
+    students = set(actives + inactives + allowed_list)
 
     # Write to a file
     students = ', '.join(map(str, students))
-
     with open("students.txt", 'w') as f:
         f.write(students)
         f.close()
