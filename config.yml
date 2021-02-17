@@ -1,4 +1,5 @@
 campus_id: 13
+inactive_duration_month: 1
 allowed_list:
   - morko
   - test
