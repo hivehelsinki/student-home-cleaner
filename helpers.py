@@ -2,13 +2,13 @@ import os
 import subprocess
 import yaml
 
-from .intra import ic
+from tools.intra import ic
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from loguru import logger
 
 
-logger.add("logs/logs.log", rotation="500 MB", retention="10 days", compression="zip") 
+logger.add("logs/logs.log", rotation="500 MB", retention="60 days", compression="zip") 
 
 
 with open('config.yml', 'r') as cfg_stream:
@@ -67,4 +67,5 @@ def get_homes():
 
 def delete_homes(logins):
     for login in logins:
-        _delete(login)        
+        _delete(login)
+
