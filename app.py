@@ -2,10 +2,12 @@ from tools.intra import ic
 from datetime import date
 from dateutil.relativedelta import relativedelta
 import yaml
+import os
 
 with open('config.yml', 'r') as cfg_stream:
     config = yaml.load(cfg_stream, Loader=yaml.BaseLoader)
-    inactive_duration_month = int(config["inactive_duration_month"])
+
+inactive_duration_month = int(config["inactive_duration_month"])
 
 
 def _get(payload):
@@ -38,8 +40,11 @@ def main():
     students = list(
         set(get_active() + get_inactive() + config['allowed_list'])
     )
-    print (students)
 
+    files = os.listdir(config['home_dir'])
+    homes = [file.replace('.img', '') for file in files if file.endswith(".img")]
+
+    print(list(set(homes) - set(students)))
     # students = ', '.join(map(str, students))
     # # with open("students.txt", 'w') as f:
     # #     f.write(students)
