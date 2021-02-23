@@ -1,2 +1,5 @@
 tools/config.yml
 __pycache__/
+
+# dev purposes
+./mnt/homes
