@@ -32,6 +32,7 @@ You can find `config.yml` in the root of the repository. That's where are stored
 | `inactive_duration_month` | inactive month time allowed |
 | `allowed_list` | a list of allowed students to keep their homes (test accounts for example) |
 
+#TODO config api lib
 
   [go back to menu](#Table-of-contents)
 
@@ -46,8 +47,11 @@ You can find `config.yml` in the root of the repository. That's where are stored
 ```sh
 pip -r requirements.txt
 ```
-6. Run a dry-run test and check it works as you want :
+6. Execute the script without --perform option and check it works as you want:
 ```sh
-./app.py --dry-run
+./app.py
 ```
 7. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
+```sh
+example... here bla bla bla
+```
