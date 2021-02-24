@@ -8,11 +8,10 @@
   <br />
 </div>
 
-<h1 align="center">WIP</h1>
+<br><br>
 
 <a href="#">student-home-cleaner</a> is a tool used at Hive Helsinki to detect inactive students via the 42 intra API and delete their student home image.
 
-**This tool is not dockerized, I don't want to setup docker on our student-storage VM, just for that tool.**
 
 <br><br>
 # Table of contents
@@ -21,6 +20,8 @@
 
 <br /><br />
 # Configuration
+
+## 1. home-student-cleaner config.yml
 
 You can find `config.yml` in the root of the repository. That's where are stored all the config variables needed to run this tool and adapt it to another school.
 
@@ -32,31 +33,47 @@ You can find `config.yml` in the root of the repository. That's where are stored
 | `inactive_duration_month` | inactive month time allowed |
 | `allowed_list` | a list of allowed students to keep their homes (test accounts for example) |
 
-#TODO config api lib
+<br><br>
+## 2. API lib config.yml
+
+Create in the `tools/` directory, a config.yml with your 42 API credentials. A simple app with public scope is enough.
+
+```sh
+cp tools/config_sample.yml tools/config.yml
+vim tools/config.yml
+```
 
   [go back to menu](#Table-of-contents)
 
 <br /><br />
 # Setup in production
 
-1. Fork this repository on your Github organization
-2. Add your student-storage SSH key as a deploy key
-3. Git clone your forked repository from the student-storage VM
-4. Edit the config.yml to match your needs on the root folder
-5. Edit the config.yml in tools/ with your API credentials (an app with scope `public` is enough)
+1. Git clone the repository to the student-storage VM
 ```sh
-cp tools/config_sample.yml tools/config.yml
-vim tools/config.yml
+git clone git@github.com:hivehelsinki/student-home-cleaner.git /opt/student-home-cleaner
 ```
-6. Install the python dependencies
+2. Edit the config.yml to match your needs on the root folder
+```
+vim /opt/student-home-cleaner/config.yml
+```
+3. Edit the config.yml in tools/ with your API credentials (an app with scope `public` is enough)
 ```sh
-pip -r requirements.txt
+cp /opt/student-home-cleaner/tools/config_sample.yml /opt/student-home-cleaner/tools/config.yml
+vim /opt/student-home-cleaner/tools/config.yml
 ```
-7. Execute the script **without** `--perform` option and check it works as you want:
+4. Install python3-pip package
 ```sh
-./app.py
+apt-get update && apt-get install -y python3-pip
 ```
-8. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
+5. Install the python dependencies
+```sh
+cd /opt/student-home-cleaner ; pip3 -r requirements.txt
+```
+6. Execute the script **without** `--perform` option and check it works as you want:
+```sh
+python3 -B app.py
+```
+7. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
 ```sh
 example... here bla bla bla
 ```
