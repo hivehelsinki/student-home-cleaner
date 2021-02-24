@@ -3,3 +3,4 @@ requests==2.25.1
 tqdm==4.56.0
 loguru==0.5.3
 click==7.1.2
+python-dateutil==2.8.1
