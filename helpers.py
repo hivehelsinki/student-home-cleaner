@@ -14,7 +14,7 @@ with open(base_dir + '/config.yml', 'r') as cfg_stream:
     config = yaml.load(cfg_stream, Loader=yaml.BaseLoader)
 
 inactive_duration_month = int(config["inactive_duration_month"])
-delete_script_path = base_dir + '/../scripts/./delete_iscsi_home.sh'
+delete_script_path = base_dir + '/scripts/./delete_iscsi_home.sh'
 
 def _get(payload):
     data = ic.pages_threaded("cursus_users", params=payload)
