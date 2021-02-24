@@ -4,17 +4,13 @@ import os
 import click
 
 from tools.helpers import get_students, get_homes, delete_homes
-from loguru import logger
-
-
-logger.add("logs/logs.log", rotation="500 MB", retention="10 days", compression="zip") 
-
 
 @click.command()
 @click.option('--perform', is_flag=True, default=False)
 def cli(perform):
-    students_list = get_students()
     homes_list = get_homes()
+    students_list = get_students()
+
     to_delete = list(set(homes_list) - set(students_list))
 
     print(f"Information:\n\t- active students found: {len(students_list)}")
