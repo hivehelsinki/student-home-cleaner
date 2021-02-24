@@ -41,11 +41,11 @@ class IntraAPIClient(object):
 		res = self.request(requests.post, self.token_url, params=request_token_payload)
 		rj = res.json()
 		self.token = rj["access_token"]
-		LOG.info(f"Got new acces token from intranet {self.token}")
+		LOG.info("Got new acces token from intranet %s" % self.token)
 
 	def _make_authed_header(self, header={}):
 		ret = {
-			"Authorization": f"Bearer {self.token}"
+			"Authorization": "Bearer %s" % self.token
 		}
 		ret.update(header)
 		return ret
@@ -55,10 +55,10 @@ class IntraAPIClient(object):
 			self.request_token() 
 		tries = 0
 		if not url.startswith("http"):
-			url = f"{self.api_url}/{url}"
+			url = self.api_url + '/' + url
 
 		while True:
-			LOG.debug(f"Attempting a request to {url}")
+			LOG.debug("Attempting a request to %s" % url)
 			res = method(url, headers=self._make_authed_header(headers), verify=self.verify_requests, **kwargs)
 			rc = res.status_code
 			if rc == 401:
@@ -67,7 +67,7 @@ class IntraAPIClient(object):
 					desc, _ = desc.split('"')
 					if desc == "The access token expired" or desc == "The access token is invalid":
 						if self.token != "token_dummy":
-							LOG.warning(f"Server said our token {self.token} {desc.split(' ')[-1]}")
+							LOG.warning("Server said our token %s %s" % (self.token, desc.split(' ')[-1]))
 						if tries < 5:
 							LOG.debug("Renewing token")
 							tries += 1
@@ -77,18 +77,32 @@ class IntraAPIClient(object):
 							LOG.error("Tried to renew token too many times, something's wrong")
 
 			if rc == 429:
-				LOG.info(f"Rate limit exceeded - Waiting {res.headers['Retry-After']}s before requesting again")
+				LOG.info("Rate limit exceeded - Waiting %ss before requesting again" % res.headers['Retry-After'])
 				time.sleep(float(res.headers['Retry-After']))
 				continue
 
 			if rc >= 400:
 				req_data = "{}{}".format(url, "\n" + str(kwargs['params']) if 'params' in kwargs.keys() else "")
 				if rc < 500:
-					raise ValueError(f"\n{res.headers}\n\nClientError. Error {str(rc)}\n{str(res.content)}\n{req_data}")
+					raise ValueError(
+						"\n%s\n\nClientError. Error %s\n%s\n%s" % (
+							res.headers, 
+							str(rc), 
+							str(res.content), 
+							req_data
+						)
+					)
 				else:
-					raise ValueError(f"\n{res.headers}\n\nServerError. Error {str(rc)}\n{str(res.content)}\n{req_data}")
+					raise ValueError(
+						"\n%s\n\nServerError. Error %s\n%s\n%s" % (
+							res.headers,
+							str(rc),
+							str(res.content),
+							req_data
+						)
+					)
 
-			LOG.debug(f"Request to {url} returned with code {rc}")
+			LOG.debug("Request to %s returned with code %d" % (url, rc))
 			return res
 
 	def get(self, url, headers={}, **kwargs):
@@ -163,7 +177,7 @@ class IntraAPIClient(object):
 			for th in range(len(active_threads)):
 				active_threads[th]['thread'].join(timeout=threads * thread_timeout) 
 				if active_threads[th]['thread'].is_alive():
-					raise RuntimeError(f'Thread timeout after waiting for {threads * thread_timeout} seconds') 
+					raise RuntimeError("Thread timeout after waiting for %d seconds" % (threads * thread_timeout)) 
 				total += active_threads[th]['queue'].get()
 				pbar.update(1) 
 
