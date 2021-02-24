@@ -14,10 +14,10 @@ def cli(perform):
     to_delete = list(set(homes_list) - set(students_list))
 
     print("Information:")
-    print(f"\t- active students found: {len(students_list)}")
-    print(f"\t- homes image found: {len(homes_list)}")
-    print(f"\t- homes to delete: {len(to_delete)}")
-    print(f"\t- homes to delete: {', '.join(to_delete)}")
+    print("\t- active students found: %d" % len(students_list))
+    print("\t- homes image found: %d" % len(homes_list))
+    print("\t- homes to delete: %s" % len(to_delete))
+    print("\t- homes to delete: %s" % ', '.join(to_delete))
 
     if perform:
         if len(to_delete) > 0:
