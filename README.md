@@ -41,17 +41,22 @@ You can find `config.yml` in the root of the repository. That's where are stored
 
 1. Fork this repository on your Github organization
 2. Add your student-storage SSH key as a deploy key
-3. Push your edited config.yml to match your needs 
-4. Git clone your forked repository from the student-storage VM
-5. Install the python dependencies
+3. Git clone your forked repository from the student-storage VM
+4. Edit the config.yml to match your needs on the root folder
+5. Edit the config.yml in tools/ with your API credentials (an app with scope `public` is enough)
+```sh
+cp tools/config_sample.yml tools/config.yml
+vim tools/config.yml
+```
+6. Install the python dependencies
 ```sh
 pip -r requirements.txt
 ```
-6. Execute the script without --perform option and check it works as you want:
+7. Execute the script **without** `--perform` option and check it works as you want:
 ```sh
 ./app.py
 ```
-7. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
+8. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
 ```sh
 example... here bla bla bla
 ```
