@@ -93,3 +93,6 @@ crontab -e
 ```sh
 0 1 1 * * /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
 ```
+
+
+  [go back to menu](#Table-of-contents)
