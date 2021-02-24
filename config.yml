@@ -1,7 +1,8 @@
-home_dir: /Users/titus/python/student-home-cleaner/mnt/homes
+home_dir: /mnt/homes
 campus_id: 13
 inactive_duration_month: 1
 allowed_list:
+  - exam
   - morko
   - test
   - jogengo
