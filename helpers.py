@@ -7,7 +7,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from loguru import logger
 
-logger.add("logs/logs.log", level="INFO", rotation="500 MB", retention="10 days", compression="zip")  60aaf8544e10c1f305e041c2201c1985db638f85:helpers.py
+logger.add("logs/logs.log", level="INFO", rotation="500 MB", retention="10 days", compression="zip")
 
 with open('config.yml', 'r') as cfg_stream:
     config = yaml.load(cfg_stream, Loader=yaml.BaseLoader)
