@@ -84,7 +84,7 @@ crontab -e
 0 1 * * * /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
 ```
 
-(example) everyday monday at 1 am
+(example) every monday at 1 am
 ```sh
 0 1 * * 1 /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
 ```
