@@ -73,7 +73,23 @@ cd /opt/student-home-cleaner ; pip3 -r requirements.txt
 ```sh
 python3 -B app.py
 ```
-7. If it works well, you can add a daily/weekly cron on the VM. It's up to you #TODO give a cron example
+7. If it works well, you can add a daily/weekly/monthly cron on the VM. It's up to you.
+
 ```sh
-example... here bla bla bla
+crontab -e
+```
+
+(example) everyday at 1 am
+```sh
+0 1 * * * /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
+```
+
+(example) everyday monday at 1 am
+```sh
+0 1 * * 1 /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
+```
+
+(example) every 1st day-of-month at 1 am
+```sh
+0 1 1 * * /usr/bin/python3 -B /opt/student-home-cleaner/app.py --perform
 ```
