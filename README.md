@@ -67,7 +67,7 @@ apt-get update && apt-get install -y python3-pip
 ```
 5. Install the python dependencies
 ```sh
-cd /opt/student-home-cleaner ; pip3 -r requirements.txt
+cd /opt/student-home-cleaner ; pip3 install -r requirements.txt
 ```
 6. Execute the script **without** `--perform` option and check it works as you want:
 ```sh
