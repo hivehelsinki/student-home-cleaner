@@ -1,14 +1,20 @@
-<h1 align="center"><code>student-home-cleaner</code></h1>
+<p align="center">
+    <a href="https://www.hive.fi/" target="_blank">
+        <img src="https://github.com/hivehelsinki/.github/blob/main/assets/logo.png?raw=true" width="128" alt="Hive logo" />
+    </a>
+</p>
 
-<div align="center">
+<p align="center">
   <sub>Created by <a href="https://github.com/jmakela42">Jani Mäkelä (dal)</a> and <a href="https://github.com/jgengo">Jordane Gengo (titus)</a></sub>
-</div>
-<div align="center">
-  <sub>From <a href="https://hive.fi">Hive Helsinki</a></sub>
-  <br />
-</div>
+</p>
 
-<br><br>
+<br>
+
+> ⚠️ This repository has been archived. Hive is not using anymore OSX homes and not maintaining this code anymore.
+
+<br>
+
+## About student-home-cleaner
 
 <a href="#">student-home-cleaner</a> is a tool used at Hive Helsinki to detect inactive students via the 42 intra API and delete their student home image.
 
@@ -28,7 +34,7 @@ You can find `config.yml` in the root of the repository. That's where are stored
 
 | key | ? |
 | :---: | :---: |
-| `home_dir` |  absolute path of the homes dir | 
+| `home_dir` |  absolute path of the homes dir |
 | `campus_id` | your intra campus_id |
 | `inactive_duration_month` | inactive month time allowed |
 | `allowed_list` | a list of allowed students to keep their homes (test accounts for example) |
